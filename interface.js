@@ -39,4 +39,9 @@ $(function() {
            console.log(value); 
         });
     });
+
+    var canvas = new fabric.Canvas('status-canvas');
+    fabric.Image.fromURL('toaster_transparent.png', function(oImg) {
+        canvas.add(oImg);
+    });
 });
