@@ -17,25 +17,53 @@
 
 <div id="content">
     
-    <div class="demo-container">
-        <div id="placeholder" class="demo-placeholder"></div>
-    </div>
-    
-    <div class="temp-control-values">
-        
-    </div>
-    
-    <div class="temp-control-container">
-        <div class="input-group temp-control">
-            <input type="text" id="temp-control-time" class="form-control" aria-label="Time" />
+    <div class="reflow-profile">
+        <h4>Reflow Profile</h4>
+        <div class="demo-container">
+            <div id="placeholder" class="demo-placeholder"></div>
         </div>
         
-        <div class="input-group temp-control">
-            <input type="text" id="temp-control-temp" class="form-control" aria-label="Tempeature" />
-        </div>
+        <table class="temp-control-tbl table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td class="temp-control-value temp-control-header">
+                        Time (s)
+                    </td>
+                    <td class="temp-control-value temp-control-header">
+                        Temperature (C)
+                    </td>
+                    <td class="temp-control-rightmost">
+                    </td>
+                </tr>
+            </thead>
+
+            <tbody class="temp-control-data">
+
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td class="temp-control-value temp-control-new">
+                        <input type="text" id="temp-control-time" aria-label="Time" />
+                    </td>
+                    <td class="temp-control-value temp-control-new">
+                        <input type="text" id="temp-control-temp" aria-label="Tempeature" />
+                    </td>
+                    <td class="temp-control-rightmost">
+                        <button type="button" id="temp-control-add" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
         
-        <button type="button" id="temp-control-add" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        </button>
+
+    </div>
+
+    <div class="system-status">
+        <h4>System Status</h4>
+
     </div>
 </div>

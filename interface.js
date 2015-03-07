@@ -5,10 +5,10 @@ var updateProfile = (function(context) {
     var getValues = (function(context) {
         var pair = [];
         
-        var temp = $(context).parent().find("#temp-control-time").val()
+        var temp = $(context).parent().parent().find("#temp-control-time").val()
         pair.push(parseInt(temp));
         
-        temp = $(context).parent().find("#temp-control-temp").val()
+        temp = $(context).parent().parent().find("#temp-control-temp").val()
         pair.push(parseInt(temp));
         
         // TODO: Deal with error checking?
@@ -33,9 +33,9 @@ $(function() {
         plot.draw();
         
         // Re-print Values
-        $(".temp-control-values").empty();
+        $(".temp-control-data").empty();
         $.each(plot.getData()[0]['data'], function(key, value) {
-            $(".temp-control-values").append("<div class=\"temp-control-pair\"><div class=\"temp-control-value\">" + value[0] + "</div><div class=\"temp-control-value\">" + value[1] + "</div></div>");
+            $(".temp-control-data").append("<tr class=\"temp-control-pair\"><td class=\"temp-control-value\">" + value[0] + "</td><td class=\"temp-control-value\">" + value[1] + "</td><td></td></tr>");
            console.log(value); 
         });
     });
