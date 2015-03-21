@@ -134,6 +134,7 @@ input[type=checkbox] {
 
 .status-table
 {
+	margin: 15px auto 30px auto;
 	text-align: center;
 }
 
