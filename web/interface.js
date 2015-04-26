@@ -164,6 +164,16 @@ function receiveMessage(message) {
 	}
 }
 
+function readTemperature() {
+	console.log("attempting to read temperature");
+
+	$.get("/get_temp", function(data) {
+		console.log(data);
+
+		console.log("temerature read successfully");
+	});
+}
+
 $(function() {
 	var plot = $.plot("#placeholder", []);
 
@@ -261,4 +271,6 @@ $(function() {
 	fabric.Image.fromURL('toaster_transparent.png', function(oImg) {
 		canvas.add(oImg);
 	});
+
+	setInterval(readTemperature, 1000);
 });
