@@ -94,7 +94,7 @@ var Profile = function() {
 	}
 
 	// Send the profile to the server
-	this.sendData = function(server) {
+	this.sendData = function() {
 		var points = this.getGraphPoints();
 
 		var message = "";
@@ -105,8 +105,17 @@ var Profile = function() {
 
 		message = message.substring(0, message.length - 1);
 
-		server.send('message', message);
 		console.log(message);
+
+		url = "/set_profile=";
+		url = url.concat(message);
+		$.get(url, function(data) {
+			if (data == "test") {
+				displayAlert('alert-success', '<em>SUCCESS:</em> The profile was sent to the toaster!');
+			}
+
+			console.log(data);
+		});
 	}
 };
 
@@ -119,7 +128,10 @@ var updateProfile = (function(context, profile) {
 		
 		var temp = $(context).parent().parent().find("#temp-control-temp").val()
 
-		if (!$.isNumeric(time) || !$.isNumeric(temp)) {
+		if (profile.pairs.length >= 19) {
+			displayAlert('alert-danger', '<em>Error:</em> Too many points added to the profile.');
+			return;
+		} else if (!$.isNumeric(time) || !$.isNumeric(temp)) {
 			displayAlert('alert-danger', '<em>Error:</em> Invalid input.');
 			return;
 		}
@@ -221,7 +233,7 @@ $(function() {
 			server.send('message', 'done');
 			$(this).prop('disabled', true);
 		} else {
-			reflowProfile.sendData(server);
+			reflowProfile.sendData();
 			$(this).prop('disabled', true);
 		}
 	});
@@ -265,11 +277,6 @@ $(function() {
 		if ((e.which == 13) && $("#temp-control-temp").is(":focus")) {
 			$("#temp-control-add").trigger("click");
 		}
-	});
-
-	var canvas = new fabric.Canvas('status-canvas');
-	fabric.Image.fromURL('toaster_transparent.png', function(oImg) {
-		canvas.add(oImg);
 	});
 
 	setInterval(readTemperature, 1000);
