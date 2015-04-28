@@ -116,12 +116,12 @@ var Toaster = function() {
 				that.baking = false;
 
 				// Enable the bake button
-				$("#bake").html("Bake!").prop('disabled', false).addClass('bacon');
+				$("#bake").html("Bake!").prop('disabled', false);
 			} else {
 				that.baking = true;
 
 				// Disable the bake button
-				$("#bake").html("Stop Baking!").prop('disabled', false).removeClass('bacon');
+				$("#bake").html("Stop Baking!").prop('disabled', false);
 			}
 		});
 
@@ -148,9 +148,13 @@ var Toaster = function() {
 	this.startBake = function(profile) {
 		var points = profile.getGraphPoints();
 
+		if (points.length == 0) {
+			return points;
+		}
+
 		var message = "";
 
-		$.each(this.getGraphPoints().data, function(index, point) {
+		$.each(profile.getGraphPoints().data, function(index, point) {
 			message += point[0]+","+point[1]+",";
 		});
 
@@ -334,6 +338,7 @@ $(function() {
 		} else {
 			toaster.startBake(reflowProfile);
 			$(this).prop('disabled', true);
+			console.log('Baking!!');
 		}
 	});
 
